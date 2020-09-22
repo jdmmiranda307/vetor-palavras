@@ -2,6 +2,7 @@ import re
 from collections import Counter
 from rest_framework import viewsets, status
 from rest_framework.response import Response
+from rest_framework.views import APIView
 from .stop_words import STOP_WORDS
 from .models import *
 from .serializers import *
@@ -82,3 +83,20 @@ class Sequence2GramViewSet(viewsets.ModelViewSet):
     serializer_class = Sequence2GramSerializer
     queryset = Sequence2Gram.objects.all()
     http_method_names = ['get', 'head']
+
+
+class DocumentSequenceDefaultViewSet(APIView):
+    http_method_names = ['get', 'head']
+
+    def get(self, request):
+        try:
+            documents = Document.objects.all()
+            if documents:
+                serializer = DocumentDefaultSerializer(documents)
+                data = serializer.data
+                status_code = status.HTTP_200_OK
+                return Response(data, status=status_code)
+            else:
+                return Response({'msg': 'error 404 not found'}, status=status.HTTP_404_NOT_FOUND)
+        except AttributeError as e:
+            return Response({'msg': str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
