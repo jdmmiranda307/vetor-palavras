@@ -10,6 +10,8 @@ router.register('vocabulario-grupo', views.Sequence2GramViewSet, basename="vocab
 
 app_name = "processador-palavras"
 urlpatterns = [
-    path(r'', include(router.urls))
+    path(r'', include(router.urls)),
+    re_path(r'^documento-vocabularios-default', views.DocumentSequenceDefaultViewSet.as_view(),
+     name='documento-vocabularios-default'),
 ]
 urlpatterns += router.urls
