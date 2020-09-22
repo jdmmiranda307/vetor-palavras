@@ -13,5 +13,7 @@ urlpatterns = [
     path(r'', include(router.urls)),
     re_path(r'^documento-vocabularios-default', views.DocumentSequenceDefaultViewSet.as_view(),
      name='documento-vocabularios-default'),
+    re_path(r'^documento-vocabularios-grupo', views.DocumentSequence2GramViewSet.as_view(),
+         name='documento-vocabularios-grupo'),
 ]
 urlpatterns += router.urls

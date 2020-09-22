@@ -100,3 +100,20 @@ class DocumentSequenceDefaultViewSet(APIView):
                 return Response({'msg': 'error 404 not found'}, status=status.HTTP_404_NOT_FOUND)
         except AttributeError as e:
             return Response({'msg': str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+
+class DocumentSequence2GramViewSet(APIView):
+    http_method_names = ['get', 'head']
+
+    def get(self, request):
+        try:
+            documents = Document.objects.all()
+            if documents:
+                serializer = Document2GramsSerializer(documents)
+                data = serializer.data
+                status_code = status.HTTP_200_OK
+                return Response(data, status=status_code)
+            else:
+                return Response({'msg': 'error 404 not found'}, status=status.HTTP_404_NOT_FOUND)
+        except AttributeError as e:
+            return Response({'msg': str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
