@@ -21,3 +21,17 @@ class DocumentSequence2GramsSerializer(serializers.ModelSerializer):
     class Meta:
         model = DocumentSequence2Grams
         fields = '__all__'
+
+
+class SequenceDefaultSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = SequenceDefault
+        fields = '__all__'
+
+
+class DocumentSequence2GramsSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = DocumentSequence2Grams
+        fields = '__all__'
