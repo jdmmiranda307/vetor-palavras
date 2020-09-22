@@ -64,3 +64,15 @@ class DocumentViewSet(viewsets.ModelViewSet):
         document_2gram_serializer = DocumentSequence2GramsSerializer(data=document_2gram_data)
         if document_2gram_serializer.is_valid(raise_exception=False):
             document_2gram_serializer.save()
+
+
+class SequenceDefaultViewSet(viewsets.ModelViewSet):
+    serializer_class = SequenceDefaultSerializer
+    queryset = SequenceDefault.objects.all()
+    http_method_names = ['get', 'head']
+
+
+class Sequence2GramViewSet(viewsets.ModelViewSet):
+    serializer_class = Sequence2GramSerializer
+    queryset = Sequence2Gram.objects.all()
+    http_method_names = ['get', 'head']
