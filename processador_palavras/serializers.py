@@ -55,3 +55,23 @@ class DocumentDefaultSerializer(serializers.ModelSerializer):
             }
             response['documents'].append(temp_dict)
         return response
+
+
+class Document2GramsSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Document
+        fields = '__all__'
+        depth = 1
+
+
+    def to_representation(self, data):
+        response = {'documents': []}
+        for doc in data:
+            temp_dict = {
+                'document': doc.id,
+                'text': doc.text,
+                'vocabulary': [default.words for default in doc.sequence_2grams.all()]
+            }
+            response['documents'].append(temp_dict)
+        return response
