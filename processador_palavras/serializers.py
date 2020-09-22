@@ -30,8 +30,8 @@ class SequenceDefaultSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
-class DocumentSequence2GramsSerializer(serializers.ModelSerializer):
+class Sequence2GramSerializer(serializers.ModelSerializer):
 
     class Meta:
-        model = DocumentSequence2Grams
+        model = Sequence2Gram
         fields = '__all__'
